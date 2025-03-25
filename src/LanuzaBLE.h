@@ -15,10 +15,10 @@ class LanuzaBLE {
     void onDisconnect(void (*callback)());
     void onWrite(void (*callback)(String));
     void setCharacteristicValue(String value);
-    String getMACAddress();  // Nueva funci�n para obtener la direcci�n MAC
+    String getMACAddress();  // Nueva funciï¿½n para obtener la direcciï¿½n MAC
     void startAdvertising();
     void stopAdvertising();
-    void sendData(String value);  // Nueva funci�n para enviar datos
+    void sendData(String value);  // Nueva función para enviar datos
 
   private:
     BLEServer *pServer;
@@ -28,7 +28,7 @@ class LanuzaBLE {
     void (*onDisconnectCallback)();
     void (*onWriteCallback)(String);
 
-    // Clases de callbacks no est�ticas
+    // Clases de callbacks no estï¿½ticas
     class MyServerCallbacks : public BLEServerCallbacks {
       public:
         MyServerCallbacks(LanuzaBLE *lanuzaBLE);
