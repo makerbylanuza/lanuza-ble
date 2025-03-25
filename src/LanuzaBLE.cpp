@@ -10,7 +10,7 @@ void LanuzaBLE::begin(const char* deviceName, const char* serviceUUID, const cha
   BLEDevice::init(deviceName);
   pServer = BLEDevice::createServer();
   
-  // Configurar el servicio y la característica BLE
+  // Configurar el servicio y la caracterÃ­stica BLE
   pService = pServer->createService(serviceUUID);
   pCharacteristic = pService->createCharacteristic(
     characteristicUUID,
@@ -27,8 +27,8 @@ void LanuzaBLE::begin(const char* deviceName, const char* serviceUUID, const cha
 }
 
 String LanuzaBLE::getMACAddress() {
-  // Obtener la dirección MAC del dispositivo
-  return BLEDevice::getAddress().toString().c_str();  // Devuelve la dirección MAC en formato string
+  // Obtener la direcciÃ³n MAC del dispositivo
+  return BLEDevice::getAddress().toString().c_str();  // Devuelve la direcciÃ³n MAC en formato string
 }
 
 void LanuzaBLE::onConnect(void (*callback)()) {
