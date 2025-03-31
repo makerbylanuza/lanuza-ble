@@ -17,3 +17,18 @@ LanuzaBLE is a library for ESP32 designed in order to allow communication betwee
 To use this library, please first install it using the steps above. Then, open one of the examples include in the library by opening Arduino IDE and going to File > Examples > Custom library examples > LanuzaBLE, or follow these instructions.
 
 ### How do I include this library in an Arduino IDE sketch?
+
+Just include the following code at the top of your sketch:
+```C++
+#include <LanuzaBLE.h>
+```
+After that, you can use all of the functions explained below.
+
+### How do I initalise the BLE device?
+
+In order to use the library, you must first create an object of the `LanuzaBLE` class. Do this by adding to your sketch the following line before the `void setup()` function:
+```C++
+LanuzaBLE myBLE;
+```
+
+Then, in the `void setup()` function, you will have to initialise
