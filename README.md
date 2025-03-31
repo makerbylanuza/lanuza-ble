@@ -31,4 +31,18 @@ In order to use the library, you must first create an object of the `LanuzaBLE` 
 LanuzaBLE myBLE;
 ```
 
-Then, in the `void setup()` function, you will have to initialise
+Then, in the `void setup()` function, you will have to initialise the device by using the `begin()` function on it, specifying the device name, the service UUID and the characteristic UUID. These three parameters will define your device, being unique to it. First, you'll have to define them vefore the `void setup()` function, and then use them to initialize the device, such as in the following example. Please note that it is reccommended for the serial port to be started beforehand.
+```C++
+#include <LanuzaBLE.h>
+
+#define DEVICE_NAME "ESP32_BLE"
+#define SERVICE_UUID "12345678-1234-1234-1234-123456789012"
+#define CHARACTERISTIC_UUID "87654321-4321-4321-4321-098765432109"
+
+LanuzaBLE myBLE;
+
+void setup() {
+  Serial.begin(115200);
+  myBLE.begin(DEVICE_NAME, SERVICE_UUID, CHARACTERISTIC_UUID);
+}
+```
