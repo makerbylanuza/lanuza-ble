@@ -11,16 +11,16 @@ void LanuzaBLE::begin(const char* deviceName, const char* serviceUUID, const cha
   BLEDevice::init(deviceName);
   pServer = BLEDevice::createServer();
   
-  // Configurar el servicio y la característica BLE
+  // Configurate BLE service and characteristic
   pService = pServer->createService(serviceUUID);
   pCharacteristic = pService->createCharacteristic(
     characteristicUUID,
-    BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY  // Agregar NOTIFY
+    BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY
   );
   
   pCharacteristic->addDescriptor(new BLE2902());
 
-  // Configurar los callbacks
+  // Configurate callbacks
   pServer->setCallbacks(new MyServerCallbacks(this));
   pCharacteristic->setCallbacks(new MyCharacteristicCallbacks(this));
   
