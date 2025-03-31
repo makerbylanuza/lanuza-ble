@@ -1,49 +1,51 @@
-// Incluimos la biblioteca LanuzaBLE
+// Add LanuzaBLE library
 #include <LanuzaBLE.h>
 
-// Definimos datos para la inicialización
+// Define initialization data
 #define DEVICE_NAME "ESP32_BLE"
 #define SERVICE_UUID "12345678-1234-1234-1234-123456789012"
 #define CHARACTERISTIC_UUID "87654321-4321-4321-4321-098765432109"
 
-// Creamos un objeto de la clase LanuzaBLE
+// Create an object in the LanuzaBLE class
 LanuzaBLE myBLE;
 
-// Definimos qué hacer en los callbacks
+// Define what to do in each callback
 void onConnect() {
-  Serial.println("Dispositivo conectado");
+  Serial.println("A device connected to yours!");
 }
 
 void onDisconnect() {
-  Serial.println("Dispositivo desconectado");
+  Serial.println("A device disconnected from yours...");
 }
 
 void onWrite(String value) {
-  Serial.print("Dato recibido: ");
+  Serial.print("Received data: ");
   Serial.println(value);
 }
 
 void setup() {
+  // Initialize Serial Monitor
   Serial.begin(115200);
+  delay(1000);
     
-  // Iniciar BLE con nombre del dispositivo, UUID del servicio y característica
+  // Initialize BLE device using the device name and the service and characteristic UUIDs
   myBLE.begin(DEVICE_NAME, SERVICE_UUID, CHARACTERISTIC_UUID);
 
-  // Mostrar la dirección MAC del dispositivo
+  // Show ESP32 MAC address
   String macAddress = myBLE.getMACAddress();
-  Serial.print("Dirección MAC del ESP32: ");
+  Serial.print("ESP32 MAC address: ");
   Serial.println(macAddress);
 
-  // Definir callbacks
+  // Register callbacks
   myBLE.onConnect(onConnect);
   myBLE.onDisconnect(onDisconnect);
   myBLE.onWrite(onWrite);
 
-  // Iniciar publicidad BLE
+  // Initialize BLE advertising (start communicating)
   myBLE.startAdvertising();
-  Serial.println("Esperando conexiones BLE...");
+  Serial.println("Waiting for BLE connections...");
 }
 
 void loop() {
-  // La biblioteca maneja la recepción de datos, no es necesario hacer nada
+  // The library manages everything with callbacks, no loop is needed
 }

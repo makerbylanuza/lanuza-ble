@@ -1,5 +1,6 @@
 #include "LanuzaBLE.h"
 #include <Arduino.h> 
+
 LanuzaBLE::LanuzaBLE() {
   onConnectCallback = nullptr;
   onDisconnectCallback = nullptr;
@@ -27,8 +28,8 @@ void LanuzaBLE::begin(const char* deviceName, const char* serviceUUID, const cha
 }
 
 String LanuzaBLE::getMACAddress() {
-  // Obtener la dirección MAC del dispositivo
-  return BLEDevice::getAddress().toString().c_str();  // Devuelve la dirección MAC en formato string
+  // Get ESP32 MAC address
+  return BLEDevice::getAddress().toString().c_str();  // Returns MAC address as a string
 }
 
 void LanuzaBLE::onConnect(void (*callback)()) {
@@ -63,11 +64,11 @@ void LanuzaBLE::sendData(String value) {
     Serial.print("Enviando por BLE: ");
     Serial.println(value);
   } else {
-    Serial.println("No hay clientes conectados, no se envia dato.");
+    Serial.println("There is no one connected, no data is being sent.");
   }
 }
 
-// Definir el comportamiento de los callbacks
+// Define callback behaviour
 LanuzaBLE::MyServerCallbacks::MyServerCallbacks(LanuzaBLE *lanuzaBLE) {
   lanuzaBLEInstance = lanuzaBLE;
 }
